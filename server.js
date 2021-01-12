@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const dbConfig = require("./config/database.config");
+const notesRoute = require('./app/routes/note.route');
 
 // create Express App
 const app = express();
@@ -15,6 +16,8 @@ app.get("/", (req, res, next) => {
     message: "Welcome to Easy Notes API",
   });
 });
+
+app.use('/', notesRoute);
 
 mongoose
   .connect(dbConfig.url, {
